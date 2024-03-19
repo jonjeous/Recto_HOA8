@@ -1,0 +1,7 @@
+---
+- name: Install Nagios Monitoring
+  hosts: ubuntu_servers:centos_servers
+  become: true
+  roles:
+    - role: base
+    - role: nagios

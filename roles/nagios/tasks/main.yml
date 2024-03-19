@@ -1,0 +1,26 @@
+---
+- name: Install Nagios on Ubuntu
+  apt:
+    name: nagios4
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Nagios on CentOS
+  yum:
+    name: nagios
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Enable and start Nagios service (Ubuntu)
+  service:
+    name: nagios4
+    state: started
+    enabled: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable and start Nagios service (CentOS)
+  systemd:
+    name: nagios
+    state: started
+    enabled: yes
+  when: ansible_distribution == "CentOS"
